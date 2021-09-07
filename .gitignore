@@ -1,0 +1,7 @@
+temp*
+.vscode
+.venv
+.neptune
+tmp*
+*__pycache__*
+*/.env

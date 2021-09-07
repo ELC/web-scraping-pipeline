@@ -1,0 +1,21 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+selenium = "*"
+helium = "*"
+webdriver-manager = "*"
+playwright = "*"
+dagster = "*"
+dagit = "*"
+tenacity = "*"
+mpire = "*"
+neptune-client = "*"
+python-dotenv = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.8"
