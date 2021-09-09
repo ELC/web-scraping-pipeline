@@ -30,4 +30,4 @@ async def process(geojson: str) -> None:
 
         await asyncio.sleep(0.5)
 
-        await page.screenshot(path=str(parameters.DATA_PATH / "richest_playwright.png"))
+        await page.screenshot(path=str(parameters.DATA_PATH / "richest.png"))

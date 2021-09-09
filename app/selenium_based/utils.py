@@ -25,6 +25,23 @@ def get_driver() -> webdriver.Chrome:
         driver.quit()
 
 
+options = Options()
+pref = {"profile.default_content_setting_values.notifications": 2}
+options.add_argument("window-size=1840,1050")
+options.add_experimental_option("prefs", pref)
+
+singleton_driver = webdriver.Chrome(chrome_driver, options=options)
+
+
+@contextmanager
+def get_singleton_driver() -> webdriver.Chrome:
+    yield singleton_driver
+
+
+def close_singleton_driver() -> None:
+    singleton_driver.quit()
+
+
 @contextmanager
 def get_headless_driver() -> webdriver.Chrome:
     options = Options()

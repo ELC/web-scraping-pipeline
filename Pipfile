@@ -4,18 +4,28 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-selenium = "*"
-helium = "*"
-webdriver-manager = "*"
-playwright = "*"
-dagster = "*"
-dagit = "*"
-tenacity = "*"
-mpire = "*"
-neptune-client = "*"
-python-dotenv = "*"
+selenium = ">=3.141.0"
+helium = ">=3.0.7"
+webdriver-manager = ">=3.4.2"
+playwright = ">=1.14.1"
+dagster = ">=0.12.8"
+dagit = ">=0.12.8"
+tenacity = ">=8.0.1"
+mpire = ">=2.2.1"
+neptune-client = ">=0.10.8"
+python-dotenv = ">=0.19.0"
+wandb = ">=0.12.1"
 
 [dev-packages]
 
 [requires]
 python_version = "3.8"
+
+[scripts]
+playwright = "python -m app playwright"
+selenium = "python -m app selenium"
+selenium_single = "python -m app selenium_single"
+selenium_multi = "python -m app selenium_multi"
+selenium_dagster = "python -m app selenium_dagster"
+playwright_dagster = "python -m app playwright_dagster"
+benchmark = "python -m app.run_benchmark"

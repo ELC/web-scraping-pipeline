@@ -2,14 +2,10 @@ import contextlib
 from typing import Dict
 import asyncio
 
-from ..common import parameters
+from ..common import parameters, parse_strings, round_coordinates
 
 from playwright.async_api import async_playwright
 from playwright._impl._api_types import TimeoutError
-
-
-def _parse_strings(string: str) -> str:
-    return float(string.strip("@,"))
 
 
 async def process(profile: Dict[str, str]) -> Dict[str, str]:
@@ -35,11 +31,11 @@ async def process(profile: Dict[str, str]) -> Dict[str, str]:
         url = page.url
 
         longitude_raw, latitude_raw = url.split("/")[6].split(",")[:2]
-        longitude = _parse_strings(longitude_raw)
-        latitude = _parse_strings(latitude_raw)
+        longitude = parse_strings(longitude_raw)
+        latitude = parse_strings(latitude_raw)
 
         profile_updated = profile.copy()
-        profile_updated["longitude"] = longitude
-        profile_updated["latitude"] = latitude
+        profile_updated["longitude"] = round_coordinates(longitude)
+        profile_updated["latitude"] = round_coordinates(latitude)
 
     return profile_updated

@@ -22,4 +22,4 @@ def process(geojson: str) -> None:
 
         time.sleep(0.2)
 
-        driver.save_screenshot(str(parameters.DATA_PATH / "richest_selenium.png"))
+        driver.save_screenshot(str(parameters.DATA_PATH / "richest.png"))

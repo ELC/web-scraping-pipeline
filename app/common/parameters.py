@@ -17,6 +17,6 @@ MAP_URL = "https://geojson.io/"
 
 PROFILE_COUNT = 1
 
-MAX_ATTEMPS = 3
+MAX_ATTEMPS = 1
 
 NEPTUNE_KEY = os.environ["NEPTUNE_KEY"]

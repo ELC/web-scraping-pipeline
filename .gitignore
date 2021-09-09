@@ -5,3 +5,4 @@ temp*
 tmp*
 *__pycache__*
 */.env
+wandb

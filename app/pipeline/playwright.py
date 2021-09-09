@@ -19,9 +19,10 @@ from ..playwright_based import (
 )
 
 from .base import SOLID_COMMON_PARAMS, clean_data, convert_geojson
+from ..tests.create_test import test_agains_expected
+from ..common.parameters import PROFILE_COUNT
 
 
-# Dynamic
 @solid(
     input_defs=[InputDefinition("delete", Nothing)],
     output_defs=[DynamicOutputDefinition(Dict[str, str])],
@@ -29,6 +30,7 @@ from .base import SOLID_COMMON_PARAMS, clean_data, convert_geojson
 )
 async def compile_profile_list_playwright() -> Dict[str, str]:
     profiles = await compile_profile.compile_profiles()
+    assert test_agains_expected(PROFILE_COUNT, "profiles", profiles)
     for profile in profiles:
         mapping_key = str(hash(str(profile)))[-7:]
         yield DynamicOutput(profile, mapping_key=mapping_key)

@@ -1,14 +1,10 @@
-from typing import Dict
+from typing import Dict, Any
 import time
 
 from .utils import get_driver
-from ..common import parameters
+from ..common import parameters, parse_strings, round_coordinates
 
 import helium as he
-
-
-def _parse_strings(string: str) -> str:
-    return float(string.strip("@,"))
 
 
 def process(profile: Dict[str, str]) -> Dict[str, str]:
@@ -29,11 +25,11 @@ def process(profile: Dict[str, str]) -> Dict[str, str]:
         url = driver.current_url
 
         longitude_raw, latitude_raw = url.split("/")[6].split(",")[:2]
-        longitude = _parse_strings(longitude_raw)
-        latitude = _parse_strings(latitude_raw)
+        longitude = parse_strings(longitude_raw)
+        latitude = parse_strings(latitude_raw)
 
         profile_updated = profile.copy()
-        profile_updated["longitude"] = longitude
-        profile_updated["latitude"] = latitude
+        profile_updated["longitude"] = round_coordinates(longitude)
+        profile_updated["latitude"] = round_coordinates(latitude)
 
     return profile_updated

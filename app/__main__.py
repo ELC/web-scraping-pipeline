@@ -15,7 +15,7 @@ MODES = [
 if __name__ == "__main__":
     mode = sys.argv[1]
 
-    if len(sys.argv) >= 2:
+    if len(sys.argv) >= 3:
         parameters.PROFILE_COUNT = int(sys.argv[2])
 
     if mode not in MODES:
@@ -44,6 +44,18 @@ if __name__ == "__main__":
         start_time = time.perf_counter()
         selenium_multi()
         end_time = time.perf_counter()
+
+    elif mode == "selenium_single":
+        from .imperative.selenium_singleton_runner import runner as selenium_single
+
+        print(f"PROCESS STARTED: {mode}")
+        start_time = time.perf_counter()
+        selenium_single()
+        end_time = time.perf_counter()
+        
+        from .imperative.selenium_singleton_runner import close_driver
+        close_driver()
+
 
     elif mode == "selenium_dagster":
         from .pipeline.selenium import selenium_pipeline
